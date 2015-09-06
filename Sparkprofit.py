@@ -149,13 +149,3 @@ class Sparkprofit(object):
                                         instance=self,
                                         entry_costs=self.market_ids[market_id])
             self.markets[market_id].get_price(60000)
-
-#test code to build up a price database
-if __name__ == '__main__':
-    sp = Sparkprofit()
-    sp.login('testuser42@mailinator.com', 'a123456')
-    sp.set_up_all_markets()
-    for intervall in sp.INTERVALLS:
-        for m in sp.markets:
-            print 'Fetching data for {m}{int}'.format(m=m, int=intervall)
-            sp.markets[m].get_historical_data(intervall)
