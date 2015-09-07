@@ -10,7 +10,7 @@
 
  Example use of the module to get all availible price data from the server and to store them into the sql database.
 
- from Sparkprofit import Sparkprofit
+    from Sparkprofit import Sparkprofit
 
     sp = Sparkprofit()
     sp.login('testuser42@mailinator.com', 'a123456')
