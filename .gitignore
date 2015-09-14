@@ -1,0 +1,12 @@
+#Compiled sources#
+##################
+*.pyc
+
+#Database#
+##########
+*.db
+
+#Private files#
+###############
+changelog.txt
+todo.txt
