@@ -15,11 +15,11 @@ class Trade(object):
 
     def __init__(self, user, rjson):
         self.user = user
-        self.market_id = rjson['submission']['levelSubmission']['market']
-        self.stop_loss = int(rjson['submission']['levelSubmission']['predictions'][0]['stopLoss'])
-        self.take_profit = int(rjson['submission']['levelSubmission']['predictions'][0]['prediction'])
-        self.leverage = int(rjson['submission']['levelSubmission']['confidence'])
-        self.trade_id = int(rjson['submission']['id'])
+        self.market_id = rjson['bet']['market']
+        self.stop_loss = float(rjson['bet']['stopLoss'])
+        self.take_profit = float(rjson['bet']['prediction'])
+        self.leverage = int(rjson['bet']['confidence'])
+        self.trade_id = int(rjson['id'])
         #current value of the active trade
         self.last_score =  int(rjson['score']['scorePoints']/10)
 

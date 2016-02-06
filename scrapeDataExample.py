@@ -2,6 +2,9 @@
 # pylint: disable-msg=C0103
 
 from Sparkprofit import Sparkprofit
+#suppress urrlib2 InsecurePlatformWarning
+import requests.packages.urllib3
+requests.packages.urllib3.disable_warnings()
 
 sp = Sparkprofit()
 #login our test user

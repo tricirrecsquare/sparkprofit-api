@@ -1,3 +1,5 @@
+#ignore pylinter invalid constant name, caused by wrong scope
+# pylint: disable-msg=C0103
 import requests
 import json
 import trade as sparkprofit_trade
@@ -5,6 +7,7 @@ import trade as sparkprofit_trade
 class User(object):
 
     PSubmissionHistoryRequest = 'https://sparkprofit.com/data/gain/subHistory/PSubmissionHistoryRequest.json'
+    PBetHistoryRequest = 'https://sparkprofit.com/data/gain/betHistory/PBetHistoryRequest.json'
 
     email = ''
     password = ''
@@ -26,8 +29,12 @@ class User(object):
 
     #get all active trades the user has and add trade objects to the active trades
     def get_active_trades(self):
-        params = {'userId':str(self.email), 'authCode':str(self.password)}
-        r = self.parent_instance.session.post(self.PSubmissionHistoryRequest, data=json.dumps(params))
+        #params = {'userId':str(self.email), 'authCode':str(self.password)}
+        params = {'beforeMs':0, 'userIdentifier':{'invariantId':self.invariantId,
+         'publicId':self.publicId, "screenName":self.screen_name}}
+        #{"beforeMs":0,"userIdentifier":{"invariantId":"241623","publicId":"CbPzkq","screenName":"testuser42"}}
+        #r = self.parent_instance.session.post(self.PSubmissionHistoryRequest, data=json.dumps(params))
+        r = self.parent_instance.session.post(self.PBetHistoryRequest, data=json.dumps(params))
         r.encode = 'utf-8'
 
         rjson = r.json()
